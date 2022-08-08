@@ -29,7 +29,8 @@ botonDarkMode.addEventListener("click", () => {
 const dividir = (num1, num2) => num1 / num2
 
 //declaro las cotizaciones
-const valorDolar = 300
+const valorDolar = 280
+
 const valorBtc = 22976.86
 const valorEth = 1633.22
 const valorUsdc = 1
@@ -87,7 +88,6 @@ idForm.addEventListener("submit", (e) => {
 
 })
 /* hago el alert de Brujeria realizada */
-
 btnForm.addEventListener("click", () => {
     Swal.fire({
         position: 'center',
