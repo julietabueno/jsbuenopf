@@ -1,4 +1,5 @@
 /* ================================THEME================================= */
+
 //cambiar theme
 const botonDarkMode = document.getElementById("botonDarkMode")
 const botonLightMode = document.getElementById("botonLightMode")
@@ -24,69 +25,63 @@ botonDarkMode.addEventListener("click", () => {
     localStorage.setItem("theme", "dark")
 })
 
+
 /* =================================Ingreso datos usuarios================== */
+
 //Declaro la funcion dividir
 const dividir = (num1, num2) => num1 / num2
 
-//declaro las cotizaciones
+//declro las cotizaciones
 const valorDolar = 300
 const valorBtc = 22976.86
 const valorEth = 1633.22
 const valorUsdc = 1
 const valorTheos = 0.00035009
 
-//creo la clase User
-class User {
-    constructor(name, lastName, email, monedaCambio, monto) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.monedaCambio = monedaCambio;
-        this.monto = monto;
+//creo la clase Usuario
+class Usuario {
+    constructor(nombre, apellido, email, pesosCambio) {
+        this.nombre = nombre
+        this.apellido = apellido
+        this.email = email
+        this.pesosCambio = pesosCambio
+
     }
-    //esta funcion retorna el monto equivalente en dolares, del ingreso del usuario
     dolaresEquiv() {
-        switch (this.monedaCambio) {
-            case "pesos":
-                return dividir(this.monto, valorDolar);
-            default:
-                return dividir(this.monto);
-        }
+        return dividir(this.pesosCambio, valorDolar)
     }
 }
+//creo el array de objetos para los usuarios, vacio
+const usuarios = []
 
-//simplifico el codigo del if
-const users = JSON.parse(localStorage.getItem("users")) ?? []
+//creo el array de objetos para los usuarios, vacio. Chequeando si ya existe en localStorage
+//const usuarios = JSON.parse(localStorage.getItem("usuarios")) ?? []
 
 //Para tomar los datos del formulario, creo las variables que necesito
-const idForm = document.getElementById("formUser");
+const idFormulario = document.getElementById("formulario");
 
-idForm.addEventListener("submit", (e) => {
+idFormulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    /*     const name = document.getElementById("name").value;
-        const lastName = document.getElementById("lastName").value;
-        const email = document.getElementById("email").value;
-        const monedaCambio = document.getElementById("monedaCambio").value;
-        const monto = document.getElementById("monto").value;
-     */
-    let datForm = new FormData(e.target)
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const email = document.getElementById("email").value;
+    const pesosCambio = document.getElementById("pesosCambio").value;
 
-    //creo el objeto user
-    //const user = new User(name, lastName, email, monedaCambio, monto);
-    let user = new User(datForm.get('name'), datForm.get('lasName'), datForm.get('email'), datForm.get('monedaCambio'), datForm.get('monto'))
 
-    //Agrego los datos del user al array
-    users.push(user)
-    //Guardo los datos del user en LocalStorage
-    localStorage.setItem("users", JSON.stringify(user));
+    //creo el objeto usuario
+    const usuario = new Usuario(nombre, apellido, email, pesosCambio)
+
+    //Agrego los datos del usuario al array
+    usuarios.push(usuario)
+    //Guardo los datos del usuario en LocalStorage
+    localStorage.setItem("usuario", JSON.stringify(usuarios));
     //Ahora limpio el formulario
-    formUser.reset();
+    idFormulario.reset();
 
     //Muestro el resultado creando una funcion
-    realizarCambio(user);
+    realizarCambio(usuario);
 
 })
-/* hago el alert de Brujeria realizada */
 
 btnForm.addEventListener("click", () => {
     Swal.fire({
@@ -95,25 +90,32 @@ btnForm.addEventListener("click", () => {
         title: 'Brujeria realizada',
         showConfirmButton: false,
         timer: 1500,
-    })
+      }) 
 })
-//Creo la funcion para mostrar el resultado
-const result = document.getElementById("divForm");
 
-const realizarCambio = ((user) => {
+
+//Creo la funcion para mostrar el resultado
+const resultado = document.getElementById("infoUsuarios");
+
+const realizarCambio = (usuario) => {
     let aux = "";
     aux += `
-                <h2 class="card-title">Hola ${user.name}</h2>
-                <h3> Los ${user.monedaCambio} ${user.monto} que ingresaste equivalen a </h3>
+    <h2 class="card-title">Hola ${usuario.nombre}</h2>
+
+    <div class="card cardUsuarios" style="width: 18rem;">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 ">Tus $ equivalen a USD ${usuario.dolaresEquiv()}</h6>
+        </div>
+    </div>
     
-                <div class="col-md-12 d-flex justify-content-evenly">
+<div class="col-lg-6 col-md-12 d-flex justify-content-evenly">
                             <div class="row">
                                 <div class="col-md-auto">
                                     <div class="card cardUsuarios" style="width: 8rem;">
                                         <img src="img/btcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Bitcoin</h2>
-                                            <p class="cardBtc">USD BTC ${dividir(user.dolaresEquiv(), valorBtc)}</p>
+                                            <p class="cardBtc">BTC ${dividir(usuario.dolaresEquiv(), valorBtc)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -122,7 +124,7 @@ const realizarCambio = ((user) => {
                                         <img src="img/ethLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Ethereum</h2>
-                                            <p class="cardBtc">ETH ${dividir(user.dolaresEquiv(), valorEth)}</p>
+                                            <p class="cardBtc">ETH ${dividir(usuario.dolaresEquiv(), valorEth)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +133,7 @@ const realizarCambio = ((user) => {
                                         <img src="img/usdcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>USDC</h2>
-                                            <p class="cardBtc">USDC ${dividir(user.dolaresEquiv(), valorUsdc)}</p>
+                                            <p class="cardBtc">USDC ${dividir(usuario.dolaresEquiv(), valorUsdc)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -140,12 +142,43 @@ const realizarCambio = ((user) => {
                                         <img src="img/theosLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>THEOS</h2>
-                                            <p class="cardBtc">THEOS ${dividir(user.dolaresEquiv(), valorTheos)}</p>
+                                            <p class="cardBtc">THEOS ${dividir(usuario.dolaresEquiv(), valorTheos)}</p>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div> 
                         `
-    result.innerHTML = aux;
-})
+
+    resultado.innerHTML = aux;
+}
+
+//Muestro el localStorage
+const botonIngresos = document.getElementById("botonIngresos");
+const datosIngresos = document.getElementById("datosIngresos");
+
+botonIngresos.addEventListener("click", () => {
+    const usuarios = JSON.parse(localStorage.getItem("Usuario"));
+    let aux = "";
+    usuarios.forEach(usuario => {
+        aux += `
+       <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Nombre y Apellido</th>
+                <th scope="col">Dolares a cambiar</th>
+                <th scope="col">e-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>${usuario.nombre} ${usuario.apellido}</td>
+                <td>U$D ${usuario.dolaresEquiv()}</td>
+                <td>${usuario.email}</td>
+                </tr>
+            </tbody>
+        </table>`
+    });
+    datosIngresos.innerHTML = aux;
+});

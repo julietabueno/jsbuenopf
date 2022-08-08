@@ -13,117 +13,101 @@
     <script src="https://kit.fontawesome.com/f03e0db334.js" crossorigin="anonymous"></script>
     <!-- Links  a Css  -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body class="container-fluid">
 
-        <header>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <a id="navbar-brand" class="navbar-brand" href="#">Ritual</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cotizaciones</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Mi cuenta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Ayuda</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="d-flex row p-2">
-                        <button id="botonDarkMode" class="btn btn-dark">Dark Mode</button>
-                        <button id="botonLightMode" class="btn btn-light">Light Mode</button>
+    <header>
+        <div class="contenedor">
+            <nav>
+
+                <div class="enlaces d-flex justify-content-between ">
+                    <a class="logotipo" href="#">RITUAL</a>
+                    <a href="#">Cotizaciones</a>
+                    <a href="#">Mi cuenta</a>
+                    <a href="#">Ayuda</a>
+
+                    <div class="d-grid gap-2 row-6 d-md-flex justify-content-md-end">
+                        <button id="botonDarkMode" class="btn btn-dark btn-sm">Dark Mode</button>
+                        <button id="botonLightMode" class="btn btn-light btn-sm">Light Mode</button>
                     </div>
                 </div>
             </nav>
-        </header>
-        <!-- =====================================MAIN=========================== -->
 
+    </header>
+    <!-- =====================================MAIN=========================== -->
 
-        <main>
+    <main>
+        <!-- Creo el contenedor -->
+        <div class="contenedor">
+            <!-- Creo el grid general con 3 columnas-->
+            <div class="grid text-center" style="--bs-columns: 3;">
+                <!-- Divido el grid en 12 columnas -->
+                <div class="grid align-middle" style="--bs-columns: 12;">
+                    <div class="row">
+                        <div class=" col px-4 py-5 text-center fondo">
+                            <h1 class="title display-5 fw-bold">RITUAL</h1>
+                            <div class="col-lg-6 mx-auto">
 
-            <div class="px-4 py-5 text-center fondo">
-                <h1 class="title display-5 fw-bold">Querés comprar cyptomonedas?</h1>
-                <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">Te ayudamos para que sepas cuanto vale tu dinero.</p>
-                </div>
-            </div>
-            <!-- Formulario de ingreso de datos -->
-            <div class="row my-4">
-                <h2>Por favor, completá la info:</h2>
-                <form class="col-xl-6 col-md-6" id="formUser" name="formUser">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                    <label for="lastName" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName" required>
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    <!-- agregar un input con seleccion de pesos o dolares -->
-                    <div>
-                        <label for="monedaCambio">Seleccioná que moneda querés cambiar:</label>
-                        <select name="monedaCambio" id="monedaCambio" name="monedaCambio">
-                            <option value="pesos">Pesos</option>
-                            <option value="dolares">Dolares</option>
-                        </select>
+                            </div>
+                        </div>
                     </div>
-                    <label for="monto" class="form-label">Monto que querés cambiar?</label>
-                    <input type="number" class="form-control" id="monto" name="monto" required>
+                    <!-- Formulario de ingreso de datos -->
+                    <div class="row ">
+                        <div class="col-lg-12 ">
+                            <form class="col-md-auto" id="formulario">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <label for="peso" class="form-label">Cuantos $ queres convertir?</label>
+                                <input type="number" class="form-control" id="pesosCambio" name="pesosCambio" required>
 
-                    <button type="submit" class="btn btnStyle my-2 btnForm" id="btnForm" name="btnForm">Realizar
-                        Brujería</button>
-                </form>
-                <div class="col-xl-6 col-md-6">
-                    <!-- Aca quiero ue aparezca el resultado -->
-                    <div class="container">
-                        <!-- <button id="btnForm" class="btn btn-dark">Mostrar brujeria</button><br><br> -->
-                        <div id="divForm" class="row"></div>
+                                <button type="submit" class="btn btnStyle my-2" id="btnForm">Calcular cryptos</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- MUESTRO LOS DATOS -->
-            <!--  <div class="datosIngresados row">
-                <div class="row">
-                    <div class="col-12 text-center" id="infoUsuarios"></div>
-                </div>
-                <button class="btn btnStyle btn-md px-4 gap-3 colorBoton m-3" id="botonIngresos"> Datos Ingresados
-                </button>
-                <div class="row">
-                    <div id="datosIngresos"></div>
-                </div>
-            </div> -->
-        </main>
-
-        <!-- FOOTER -->
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
-                </a>
-                <span class="mb-3 mb-md-1 ">&copy; 2022 ritualcrypto.com</span>
+        </div>
+        <!-- MUESTRO LOS DATOS -->
+        <div class="datosIngresados row">
+            <div class="row">
+                <div class="col-12 text-center" id="infoUsuarios"></div>
             </div>
-        </footer>
+            <button class="btn btnStyle btn-md px-4 gap-3 colorBoton m-3" id="botonIngresos"> Datos Ingresados
+            </button>
+            <div class="row">
+                <div id="datosIngresos"></div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-1 ">&copy; 2022 ritualcrypto.com</span>
+        </div>
+    </footer>
 
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- Script de SweetAlert -->
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <!-- link de JS de Bootstrap 5.2-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 
-        <script src="script.js"></script>
-        <!-- link de JS de Bootstrap 5.2-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-            crossorigin="anonymous"></script>
-    </body>
+</body>
 
 </html>
