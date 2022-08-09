@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RITUAL</title>
-    <link rel="shortcut icon" href="img/sombrero.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
     <!-- Link de Bootswatch -->
     <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
     <!-- Link de Fontawesome -->
@@ -63,8 +63,8 @@
                                 <input type="text" class="form-control" id="apellido" name="apellido" required>
                                 <label for="email" class="form-label">E-mail</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
-                                <label for="peso" class="form-label">Cuantos $ queres convertir?</label>
-                                <input type="number" class="form-control" id="pesosCambio" name="pesosCambio" required>
+                                <label for="monto" class="form-label">Ingresá el valor en $ que queres convertir</label>
+                                <input type="number" class="form-control" id="monto" name="monto" required>
 
                                 <button type="submit" class="btn btnStyle my-2" id="btnForm">Calcular cryptos</button>
                             </form>
@@ -76,10 +76,10 @@
         <!-- MUESTRO LOS DATOS -->
         <div class="datosIngresados row">
             <div class="row">
-                <div class="col-12 text-center" id="infoUsuarios"></div>
+                <div class="col-12 text-center infoUsuarios" id="infoUsuarios"></div>
             </div>
-            <button class="btn btnStyle btn-md px-4 gap-3 colorBoton m-3" id="botonIngresos"> Datos Ingresados
-            </button>
+            <!-- <button class="btn btnStyle btn-md px-4 gap-3 colorBoton m-3" id="botonIngresos"> Datos Ingresados
+            </button> -->
             <div class="row">
                 <div id="datosIngresos"></div>
             </div>

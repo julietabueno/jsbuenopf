@@ -24,6 +24,83 @@ botonDarkMode.addEventListener("click", () => {
     document.body.classList.remove("lightMode")
     localStorage.setItem("theme", "dark")
 })
+//===========================================APIs===================================
+//==========DOLARES
+//Traigo info de cotizaciones con API de CryptoYa!
+const divDolar = document.getElementById("divDolar")
+const valorDolar = consultarDolar();
+//creo la funcion para consultar los valores el valor 
+function consultarDolar() {
+    fetch("https://criptoya.com/api/dolar")
+        .then(response => response.json())
+        .then((blue) => {
+            valorDolar = blue
+        })
+}
+
+consultarDolar()
+
+setInterval(() => {
+    consultarDolar()
+}, 30000)
+//==========BITCOIN
+//Traigo info de cotizaciones con API de CryptoYa!
+const divBitcoin = document.getElementById("divBitcoin")
+const valorBtc = consultarBitcoin();
+
+//creo la funcion para consultar los valores el valor del dolar
+function consultarBitcoin() {
+    fetch("https://criptoya.com/api/lemoncash/btc")
+        .then(response => response.json())
+        .then((ask) => {
+         valorBtc = ask
+        })
+}
+
+consultarBitcoin()
+
+setInterval(() => {
+    consultarBitcoin()
+}, 30000)
+
+//==========ETHEREUM
+//Traigo info de cotizaciones con API de CryptoYa!
+const divEthereum = document.getElementById("divEthereum")
+
+//creo la funcion para consultar los valores el valor del dolar
+function consultarEthereum() {
+    fetch("https://criptoya.com/api/lemoncash/eth")
+        .then(response => response.json())
+        .then((ask) => {
+            valorEth = ask
+        })
+}
+
+consultarEthereum()
+
+setInterval(() => {
+    consultarEthereum()
+}, 30000)
+
+//==========USDC
+//Traigo info de cotizaciones con API de CryptoYa!
+const divUsdc = document.getElementById("divUsdc")
+
+//creo la funcion para consultar los valores el valor del dolar
+function consultarUSDC() {
+    fetch("https://criptoya.com/api/lemoncash/usdc")
+        .then(response => response.json())
+        .then((ask) => {
+            valorUsdc = ask
+        })
+}
+
+consultarUSDC()
+
+setInterval(() => {
+    consultarUSDC()
+}, 30000)
+
 
 
 /* =================================Ingreso datos usuarios================== */
@@ -31,31 +108,22 @@ botonDarkMode.addEventListener("click", () => {
 //Declaro la funcion dividir
 const dividir = (num1, num2) => num1 / num2
 
-//declro las cotizaciones
-const valorDolar = 300
-const valorBtc = 22976.86
-const valorEth = 1633.22
-const valorUsdc = 1
-const valorTheos = 0.00035009
-
 //creo la clase Usuario
 class Usuario {
-    constructor(nombre, apellido, email, pesosCambio) {
+    constructor(nombre, apellido, email, monto) {
         this.nombre = nombre
         this.apellido = apellido
         this.email = email
-        this.pesosCambio = pesosCambio
-
+        this.monto = monto
     }
     dolaresEquiv() {
         return dividir(this.pesosCambio, valorDolar)
     }
 }
-//creo el array de objetos para los usuarios, vacio
-const usuarios = []
+
 
 //creo el array de objetos para los usuarios, vacio. Chequeando si ya existe en localStorage
-//const usuarios = JSON.parse(localStorage.getItem("usuarios")) ?? []
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) ?? []
 
 //Para tomar los datos del formulario, creo las variables que necesito
 const idFormulario = document.getElementById("formulario");
@@ -65,11 +133,11 @@ idFormulario.addEventListener("submit", (e) => {
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const email = document.getElementById("email").value;
-    const pesosCambio = document.getElementById("pesosCambio").value;
+    const monto = document.getElementById("monto").value;
 
 
     //creo el objeto usuario
-    const usuario = new Usuario(nombre, apellido, email, pesosCambio)
+    const usuario = new Usuario(nombre, apellido, email, monto)
 
     //Agrego los datos del usuario al array
     usuarios.push(usuario)
@@ -90,7 +158,7 @@ btnForm.addEventListener("click", () => {
         title: 'Brujeria realizada',
         showConfirmButton: false,
         timer: 1500,
-      }) 
+    })
 })
 
 
@@ -104,7 +172,7 @@ const realizarCambio = (usuario) => {
 
     <div class="card cardUsuarios" style="width: 18rem;">
         <div class="card-body">
-            <h6 class="card-subtitle mb-2 ">Tus $ equivalen a USD ${usuario.dolaresEquiv()}</h6>
+            <h6 class="card-subtitle mb-2 ">Tus $${usuario.monto} equivalen a U$S ${dividir(usuario.monto, valorDolar)}</h6>
         </div>
     </div>
     
@@ -115,7 +183,10 @@ const realizarCambio = (usuario) => {
                                         <img src="img/btcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Bitcoin</h2>
-                                            <p class="cardBtc">BTC ${dividir(usuario.dolaresEquiv(), valorBtc)}</p>
+                                            <p class="cardBtc">BTC ${dividir(usuario.monto, valorBtc)}</p>
+                                        </div>
+                                        <div>
+                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +195,10 @@ const realizarCambio = (usuario) => {
                                         <img src="img/ethLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Ethereum</h2>
-                                            <p class="cardBtc">ETH ${dividir(usuario.dolaresEquiv(), valorEth)}</p>
+                                            <p class="cardBtc">ETH ${dividir(usuario.monto, valorEth)}</p>
+                                        </div>
+                                        <div>
+                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -133,16 +207,10 @@ const realizarCambio = (usuario) => {
                                         <img src="img/usdcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>USDC</h2>
-                                            <p class="cardBtc">USDC ${dividir(usuario.dolaresEquiv(), valorUsdc)}</p>
+                                            <p class="cardBtc">USDC ${dividir(usuario.monto, valorUsdc)}</p>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-auto">
-                                    <div class="card cardUsuarios" style="width: 8rem;">
-                                        <img src="img/theosLogo.svg" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h2>THEOS</h2>
-                                            <p class="cardBtc">THEOS ${dividir(usuario.dolaresEquiv(), valorTheos)}</p>
+                                        <div>
+                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -154,6 +222,7 @@ const realizarCambio = (usuario) => {
     resultado.innerHTML = aux;
 }
 
+/* 
 //Muestro el localStorage
 const botonIngresos = document.getElementById("botonIngresos");
 const datosIngresos = document.getElementById("datosIngresos");
@@ -181,4 +250,4 @@ botonIngresos.addEventListener("click", () => {
         </table>`
     });
     datosIngresos.innerHTML = aux;
-});
+}); */
