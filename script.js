@@ -30,12 +30,12 @@ const dividir = (num1, num2) => num1 / num2
 //creo las funciones para retornar las cotizaciones
 
 //==========DOLARES
-const valorDolar = consultarDolar()
+let valorDolar = 0
 async function consultarDolar() {
     const cotizacion = await fetch("https://criptoya.com/api/dolar")
     const cotizacionParseada = await cotizacion.json()
-
-    return cotizacionParseada.blue
+    valorDolar = cotizacionParseada.blue
+    return valorDolar
 }
 
 consultarDolar()
@@ -46,10 +46,12 @@ setInterval(() => {
 
 
 //==========BITCOIN
+let valorBitcoin = 0
 async function consultarBitcoin() {
     const cotizacion = await fetch("https://criptoya.com/api/lemoncash/btc")
     const cotizacionParseada = await cotizacion.json()
-    return cotizacionParseada.ask
+    valorBitcoin = cotizacionParseada.ask
+    return valorBitcoin
 }
 
 consultarBitcoin()
@@ -60,11 +62,12 @@ setInterval(() => {
 
 
 //==========ETHEREUM
+let valorEthereum = 0
 async function consultarEthereum() {
     const cotizacion = await fetch("https://criptoya.com/api/lemoncash/eth")
     const cotizacionParseada = await cotizacion.json()
-    return cotizacionParseada.ask
-
+    valorEthereum = cotizacionParseada.ask
+    return valorEthereum
 }
 
 consultarEthereum()
@@ -74,10 +77,12 @@ setInterval(() => {
 }, 30000)
 
 //==========USDC
+let valorUSCD = 0
 async function consultarUSDC() {
     const cotizacion = await fetch("https://criptoya.com/api/lemoncash/usdc")
     const cotizacionParseada = await cotizacion.json()
-    return cotizacionParseada.ask
+    valorUSCD = cotizacionParseada.ask
+    return valorUSCD
 }
 
 consultarUSDC()
@@ -159,7 +164,7 @@ const realizarCambio = (usuario) => {
                                         <img src="img/btcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Bitcoin</h2>
-                                            <p class="cardBtc">BTC ${dividir(usuario.monto, consultarBitcoin())}</p>
+                                            <p class="cardBtc">BTC ${dividir(usuario.monto, valorBitcoin)}</p>
                                         </div>
                                         <div>
                                         <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
@@ -171,7 +176,7 @@ const realizarCambio = (usuario) => {
                                         <img src="img/ethLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>Ethereum</h2>
-                                            <p class="cardBtc">ETH ${dividir(usuario.monto, consultarEthereum())}</p>
+                                            <p class="cardBtc">ETH ${dividir(usuario.monto, valorEthereum)}</p>
                                         </div>
                                         <div>
                                         <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
@@ -183,7 +188,7 @@ const realizarCambio = (usuario) => {
                                         <img src="img/usdcLogo.svg" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h2>USDC</h2>
-                                            <p class="cardBtc">USDC ${dividir(usuario.monto, consultarUSDC)}</p>
+                                            <p class="cardBtc">USDC ${dividir(usuario.monto, valorUSCD)}</p>
                                         </div>
                                         <div>
                                         <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
