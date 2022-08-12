@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "npm": "^8.17.0",
+    "sweetalert2": "^11.4.26"
+  },
+  "name": "jsbuenopf",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julietabueno/jsbuenopf.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julietabueno/jsbuenopf/issues"
+  },
+  "homepage": "https://github.com/julietabueno/jsbuenopf#readme",
+  "description": ""
+}
