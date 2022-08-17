@@ -19,38 +19,50 @@
 <body class="container-fluid">
 
     <header>
-        <div class="contenedor">
-            <nav>
-
-                <div class="enlaces d-flex justify-content-between ">
-                    <a class="logotipo" href="#">RITUAL</a>
-                    <a href="#">Cotizaciones</a>
-                    <a href="#">Mi cuenta</a>
-                    <a href="#">Ayuda</a>
-
-                    <div class="d-grid gap-2 row-6 d-md-flex justify-content-md-end">
-                        <button id="botonDarkMode" class="btn btn-dark btn-sm">Dark Mode</button>
-                        <button id="botonLightMode" class="btn btn-light btn-sm">Light Mode</button>
+        <div>
+            <div class="contenedor">
+                <nav>
+                    <div>
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">RITUAL</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cotizaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Mi cuenta</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Ayuda</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </nav>
+
+                    <div class="d-grid gap-1 row-1  justify-content-end">
+                        <button id="botonDarkMode" class="botonDarkMode btn btn-sm">Dark Mode</button>
+                        <button id="botonLightMode" class="botonLightMode btn btn-sm">Light Mode</button>
+                    </div>
+                </nav>
+            </div>
+
 
     </header>
     <!-- =====================================MAIN=========================== -->
 
     <main>
-<div class="container">
-    <p id="tBody"></p>
-</div>
+        <div class="container">
+            <p id="tBody"></p>
+        </div>
 
 
         <!-- Creo el contenedor -->
-        <div class="contenedor">
+        <div class="contenedor container-fluid">
             <!-- Creo el grid general con 3 columnas-->
-            <div class="grid text-center" style="--bs-columns: 3;">
-                <!-- Divido el grid en 12 columnas -->
+            <!-- <div class="grid text-center" style="--bs-columns: 3;">
+                Divido el grid en 12 columnas 
                 <div class="grid align-middle" style="--bs-columns: 12;">
-                    <div class="row">
+                    <div class="row">-->
                         <div class=" col px-4 py-5 text-center fondo">
                             <h1 class="title display-5 fw-bold">RITUAL</h1>
                             <div class="col-lg-6 mx-auto">
@@ -60,8 +72,8 @@
                     </div>
                     <!-- Formulario de ingreso de datos -->
                     <div class="row ">
-                        <div class="col-lg-12 ">
-                            <form class="col-md-auto" id="formulario">
+                        <div class="col-lg-6 ">
+                            <form class="col-xl-6 " id="formulario">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
                                 <label for="apellido" class="form-label">Apellido</label>

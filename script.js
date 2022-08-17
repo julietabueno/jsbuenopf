@@ -167,7 +167,7 @@ const realizarCambio = (usuario) => {
                                             <p class="cardBtc">BTC ${dividir(usuario.monto, valorBitcoin)}</p>
                                         </div>
                                         <div>
-                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
+                                        <button id="btnCompraBtc" class="btn btnStyle btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@ const realizarCambio = (usuario) => {
                                             <p class="cardBtc">ETH ${dividir(usuario.monto, valorEthereum)}</p>
                                         </div>
                                         <div>
-                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
+                                        <button id="btnCompraEth" class="btn btnStyle btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@ const realizarCambio = (usuario) => {
                                             <p class="cardBtc">USDC ${dividir(usuario.monto, valorUSCD)}</p>
                                         </div>
                                         <div>
-                                        <button id="btnCompra" class="btn btn-light btn-sm">Comprar</button>
+                                        <button id="btnCompraUSDC" class="btn btnStyle btn-sm">Comprar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -202,6 +202,28 @@ const realizarCambio = (usuario) => {
 
     resultado.innerHTML = aux;
 }
+/* Agrego alertas de SA2 a los botones de comprar de las cards */
+btnCompraUSDC.addEventListener("click", () => {
+    Swal.fire({
+        title: 'Seguimos con la compra?',
+        text: "Estás por comprar USDC",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4B0082',
+        cancelButtonColor: '#CC0070',
+        confirmButtonText: 'Si, compro!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Felicitaciones!',
+                'Acabas de confirmar tu compra de Cypto USDC',
+                'success'
+            )
+        }
+    })
+})
+
+
 
 /* 
 //Muestro el localStorage
