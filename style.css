@@ -51,7 +51,12 @@ h1 {
 }
 
 h2 {
-    color: #d86aff;
+    color: #CCA500;
+    font-size: x-large;
+}
+
+h3 {
+    color: #CCA500;
     font-size: large;
 }
 
@@ -84,9 +89,13 @@ h2 {
 .cardUsuarios {
     background-color: rgb(49, 5, 90);
     margin: 2%;
-    color: rgb(226, 224, 226);
+    color: #CCA500;
 }
 
 .card-link {
     font-size: medium;
+}
+
+footer {
+    color: #5c1775;
 }
