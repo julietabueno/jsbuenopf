@@ -91,24 +91,17 @@ setInterval(() => {
     consultarUSDC()
 }, 30000)
 
-/* =================================Ingreso datos usuarios================== */
-
-
-//creo la clase Usuario
-class Usuario {
+/* =================================Ingreso datos usuarios================== */class Usuario {
     constructor(nombre, apellido, email, monto) {
         this.nombre = nombre
         this.apellido = apellido
         this.email = email
         this.monto = monto
     }
-
 }
 
-//creo el array de objetos para los usuarios, vacio. Chequeando si ya existe en localStorage
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) ?? []
 
-//Para tomar los datos del formulario, creo las variables que necesito
 const idFormulario = document.getElementById("formulario");
 
 idFormulario.addEventListener("submit", (e) => {
@@ -118,18 +111,14 @@ idFormulario.addEventListener("submit", (e) => {
     const email = document.getElementById("email").value;
     const monto = document.getElementById("monto").value;
 
-
-    //creo el objeto usuario
     const usuario = new Usuario(nombre, apellido, email, monto)
 
-    //Agrego los datos del usuario al array
     usuarios.push(usuario)
-    //Guardo los datos del usuario en LocalStorage
+
     localStorage.setItem("usuario", JSON.stringify(usuarios));
-    //Ahora limpio el formulario
+
     idFormulario.reset();
 
-    //Muestro el resultado creando una funcion
     realizarCambio(usuario);
 })
 
@@ -143,7 +132,6 @@ btnForm.addEventListener("click", () => {
     })
 })
 
-//Creo la funcion para mostrar el resultado
 const resultado = document.getElementById("infoUsuarios");
 
 const realizarCambio = (usuario) => {
@@ -197,71 +185,72 @@ const realizarCambio = (usuario) => {
     resultado.innerHTML = aux;
 
     /* Agrego alertas de SA2 a los botones de comprar de las cards */
-let btnCompraBtc= document.getElementById("btnCompraBtc")
-let btnCompraEth = document.getElementById("btnCompraEth")
-let btnCompraUSDC = document.getElementById("btnCompraUSDC")
-//BITCOIN
-btnCompraBtc.addEventListener("click", () => {
-    Swal.fire({
-        title: 'Seguimos con la compra?',
-        text: "Estás por comprar Bitcoins",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#4B0082',
-        cancelButtonColor: '#CC0070',
-        confirmButtonText: 'Si, compro!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Felicitaciones!',
-                'Acabas de confirmar tu compra de Bitcoins',
-                'OK'
-            )
-        }
+    let btnCompraBtc = document.getElementById("btnCompraBtc")
+    let btnCompraEth = document.getElementById("btnCompraEth")
+    let btnCompraUSDC = document.getElementById("btnCompraUSDC")
+    
+    //BITCOIN
+    btnCompraBtc.addEventListener("click", () => {
+        Swal.fire({
+            title: 'Seguimos con la compra?',
+            text: "Estás por comprar Bitcoins",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4B0082',
+            cancelButtonColor: '#CC0070',
+            confirmButtonText: 'Si, compro!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Felicitaciones!',
+                    'Acabas de confirmar tu compra de Bitcoins',
+                    'OK'
+                )
+            }
+        })
     })
-})
 
-//EHTEREUM
-btnCompraEth.addEventListener("click", () => {
-    Swal.fire({
-        title: 'Seguimos con la compra?',
-        text: "Estás por comprar ETH",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#4B0082',
-        cancelButtonColor: '#CC0070',
-        confirmButtonText: 'Si, compro!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Felicitaciones!',
-                'Acabas de confirmar tu compra de Ethereum',
-                'OK'
-            )
-        }
+    //EHTEREUM
+    btnCompraEth.addEventListener("click", () => {
+        Swal.fire({
+            title: 'Seguimos con la compra?',
+            text: "Estás por comprar ETH",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4B0082',
+            cancelButtonColor: '#CC0070',
+            confirmButtonText: 'Si, compro!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Felicitaciones!',
+                    'Acabas de confirmar tu compra de Ethereum',
+                    'OK'
+                )
+            }
+        })
     })
-})
 
-//USDC
-btnCompraUSDC.addEventListener("click", () => {
-    Swal.fire({
-        title: 'Seguimos con la compra?',
-        text: "Estás por comprar USDC",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#4B0082',
-        cancelButtonColor: '#CC0070',
-        confirmButtonText: 'Si, compro!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Felicitaciones!',
-                'Acabas de confirmar tu compra de USDC',
-                'OK'
-            )
-        }
+    //USDC
+    btnCompraUSDC.addEventListener("click", () => {
+        Swal.fire({
+            title: 'Seguimos con la compra?',
+            text: "Estás por comprar USDC",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4B0082',
+            cancelButtonColor: '#CC0070',
+            confirmButtonText: 'Si, compro!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Felicitaciones!',
+                    'Acabas de confirmar tu compra de USDC',
+                    'OK'
+                )
+            }
+        })
     })
-})
 }
 
 
