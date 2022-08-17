@@ -195,10 +195,54 @@ const realizarCambio = (usuario) => {
     </div>`
 
     resultado.innerHTML = aux;
-}
-/* Agrego alertas de SA2 a los botones de comprar de las cards */
-const btnCompraUSDC = document.getElementById("btnCompraUSDC")
 
+    /* Agrego alertas de SA2 a los botones de comprar de las cards */
+let btnCompraBtc= document.getElementById("btnCompraBtc")
+let btnCompraEth = document.getElementById("btnCompraEth")
+let btnCompraUSDC = document.getElementById("btnCompraUSDC")
+//BITCOIN
+btnCompraBtc.addEventListener("click", () => {
+    Swal.fire({
+        title: 'Seguimos con la compra?',
+        text: "Estás por comprar Bitcoins",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4B0082',
+        cancelButtonColor: '#CC0070',
+        confirmButtonText: 'Si, compro!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Felicitaciones!',
+                'Acabas de confirmar tu compra de Bitcoins',
+                'OK'
+            )
+        }
+    })
+})
+
+//EHTEREUM
+btnCompraEth.addEventListener("click", () => {
+    Swal.fire({
+        title: 'Seguimos con la compra?',
+        text: "Estás por comprar ETH",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#4B0082',
+        cancelButtonColor: '#CC0070',
+        confirmButtonText: 'Si, compro!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Felicitaciones!',
+                'Acabas de confirmar tu compra de Ethereum',
+                'OK'
+            )
+        }
+    })
+})
+
+//USDC
 btnCompraUSDC.addEventListener("click", () => {
     Swal.fire({
         title: 'Seguimos con la compra?',
@@ -212,11 +256,13 @@ btnCompraUSDC.addEventListener("click", () => {
         if (result.isConfirmed) {
             Swal.fire(
                 'Felicitaciones!',
-                'Acabas de confirmar tu compra de Cypto USDC',
+                'Acabas de confirmar tu compra de USDC',
                 'OK'
             )
         }
     })
 })
+}
+
 
 
