@@ -152,16 +152,16 @@ const realizarCambio = (usuario) => {
     <div class="container-fluid text-center">
             <div class="col card-body cardUsuarios">
                 <h2 class="card-title">Hola ${usuario.nombre}</h2>
-                <h3 class="card-subtitle py-1">Tus $${usuario.monto} equivalen a U$S ${dividir(usuario.monto, valorDolar)}</h3>
+                <h3 class="card-subtitle py-1">Tus $${usuario.monto} equivalen a U$S ${(dividir(usuario.monto, valorDolar)).toFixed(3)}</h3>
             </div>
     
             <div class="row">
                 <div class="col">
                     <div class="card cardUsuarios" >
-                        <img src="img/btcLogo.svg" class="card-img-top img-fluid" alt="...">
+                        <img src="img/logoBtn.svg" class="imgCard card-img-top img-fluid" alt="...">
                         <div class="card-body">
                             <h2>Bitcoin</h2>
-                            <h3 class="cardBtc">BTC ${dividir(usuario.monto, valorBitcoin)}</h3>
+                            <h3 class="cardBtc">BTC ${(dividir(usuario.monto, valorBitcoin)).toFixed(3)}</h3>
                         </div>
                     <div>
                         <button id="btnCompraBtc" class="btn btnStyle btn-sm">Comprar</button>
@@ -170,10 +170,10 @@ const realizarCambio = (usuario) => {
             </div>
             <div class="col">
                 <div class="card cardUsuarios">
-                    <img src="img/ethLogo.svg" class="card-img-top img-fluid" alt="...">
+                    <img src="img/logoEth.svg" class="imgCard card-img-top img-fluid" alt="...">
                     <div class="card-body">
                         <h2>Ethereum</h2>
-                        <p class="cardBtc">ETH ${dividir(usuario.monto, valorEthereum)}</p>
+                        <p class="cardBtc">ETH ${(dividir(usuario.monto, valorEthereum)).toFixed(3)}</p>
                     </div>
                     <div>
                         <button id="btnCompraEth" class="btn btnStyle btn-sm">Comprar</button>
@@ -182,10 +182,10 @@ const realizarCambio = (usuario) => {
             </div>
             <div class="col">
                 <div class="card cardUsuarios">
-                    <img src="img/usdcLogo.svg" class="card-img-top img-fluid" alt="...">
+                    <img src="img/logoUsdc.svg" class="imgCard card-img-top img-fluid" alt="...">
                     <div class="card-body">
                         <h2>USDC</h2>
-                        <p class="cardBtc">USDC ${dividir(usuario.monto, valorUSCD)}</p>
+                        <p class="cardBtc">USDC ${(dividir(usuario.monto, valorUSCD)).toFixed(3)}</p>
                     </div>
                     <div>
                         <button id="btnCompraUSDC" class="btn btnStyle btn-sm">Comprar</button>
